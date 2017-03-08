@@ -67,13 +67,13 @@ def pre_tree_rebin(x1, x2):
 
 
 def tree_rebin(y, ns, N):
-    y2 = zeros(N)
+    y2 = zeros(int(N))
 
     n = 0
     for i in range(len(ns) - 1):
         y3 = y[ns[i]:ns[i + 1]]
         d = 2 ** i
-        l = len(y3) / d
+        l = int(len(y3) / d)
         y3.shape = (l, d)
 
         # Note: the FFT spectrum is mostly used to identify frequency content
@@ -401,7 +401,7 @@ class QuadsItem:
         x2 = self.transformed_x2
 
         if xMap.log:
-            y = tree_rebin(self.y, self.n, self.N)
+            y = tree_rebin(np.rint(self.y).astype(int), np.rint(self.n).astype(int), int(self.N))
             y_int = tree_rebin(self.y_int, self.n, self.N)
         else:
             n = int(floor(1. / (x2[2] - x1[1])))
