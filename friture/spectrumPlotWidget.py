@@ -401,7 +401,7 @@ class QuadsItem:
         x2 = self.transformed_x2
 
         if xMap.log:
-            y = tree_rebin(np.rint(self.y).astype(int), np.rint(self.n).astype(int), int(self.N))
+            y = tree_rebin(self.y, self.n, self.N)
             y_int = tree_rebin(self.y_int, self.n, self.N)
         else:
             n = int(floor(1. / (x2[2] - x1[1])))
